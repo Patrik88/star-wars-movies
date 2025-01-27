@@ -1,3 +1,37 @@
+// Import the SASS map module
+@use "sass:map";
+
+@use "@picocss/pico/scss/pico" with ($enable-classes: true,
+  $enable-semantic-container: true,
+  $semantic-root-element: "#__next",
+  $theme-color: "yellow",
+  $modules: ("content/code": false,
+    "layout/grid": true,
+    "forms/input-color": false,
+    "forms/input-date": false,
+    "forms/input-file": false,
+    "forms/input-range": false,
+    "forms/input-search": false,
+    "components/accordion": false,
+    "components/card": true,
+    "components/dropdown": false,
+    "components/loading": false,
+    "components/modal": true,
+    "components/nav": false,
+    "components/progress": false,
+    "components/tooltip": false,
+    "utilities/accessibility": true,
+    "utilities/reduce-motion": true),
+  $breakpoints: ("sm": (breakpoint: 1140px,
+      viewport: 1070px,
+      root-font-size: 100%),
+    "md": (breakpoint: 1140px,
+      viewport: 1070px,
+      root-font-size: 106.25%),
+    "lg": (breakpoint: 1140px,
+      viewport: 1070px,
+      root-font-size: 118.75%)));
+
 body {
   font-family: Arial, sans-serif;
 }
