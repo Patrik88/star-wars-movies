@@ -1,17 +1,11 @@
-import useSWR from 'swr';
-import { Character } from '../types';
-
-const fetcher = (url: string): Promise<Character> =>
-  fetch(url).then((res) => res.json());
+import { useCharacter } from '@/hooks/useCharacter';
 
 interface CharacterCardProps {
   characterUrl: string;
 }
 
 export const CharacterCard = ({ characterUrl }: CharacterCardProps) => {
-  // Using SWR with suspense to fetch the character data.
-  // Note: SWR caches data globally by default.
-  const { data } = useSWR<Character>(characterUrl, fetcher, { suspense: true });
+  const { character } = useCharacter(characterUrl);
 
   return (
     <article
@@ -22,7 +16,7 @@ export const CharacterCard = ({ characterUrl }: CharacterCardProps) => {
         textAlign: 'center'
       }}
     >
-      <strong style={{ margin: '0px' }}>{data?.name}</strong>
+      <strong style={{ margin: '0px' }}>{character?.name}</strong>
     </article>
   );
 }; 
