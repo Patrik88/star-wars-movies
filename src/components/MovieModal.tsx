@@ -60,7 +60,7 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
         <article
           tabIndex={0}
           onKeyDown={handleKeyDown}
-          style={{ maxHeight: '95vh', display: 'flex', flexDirection: 'column', padding: '0' }}
+          style={{ maxHeight: 'min(95vh, 1113px)', display: 'flex', flexDirection: 'column', padding: '0' }}
         >
           {/* Header */}
           <header className="modal-container">
@@ -91,14 +91,18 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
             className="modal-container"
             style={{
               flexShrink: 0, display: 'flex', justifyContent: 'space-between',
-
             }}>
-            <button onClick={handlePrev} disabled={!prevMovie}>
-              {prevMovie ? `← ${prevMovie.title}` : 'No Previous'}
-            </button>
-            <button onClick={handleNext} disabled={!nextMovie}>
-              {nextMovie ? `${nextMovie.title} →` : 'No Next'}
-            </button>
+            {prevMovie && (
+              <button onClick={handlePrev} disabled={!prevMovie} style={{ minWidth: 'calc(33.4% - var(--pico-grid-column-gap))' }}>
+                ← {prevMovie.title}
+              </button>
+            )}
+            <div style={{ flex: 1 }}></div>
+            {nextMovie && (
+              <button onClick={handleNext} disabled={!nextMovie} style={{ minWidth: 'calc(33.4% - var(--pico-grid-column-gap))' }}>
+                {nextMovie.title} →
+              </button>
+            )}
           </footer>
         </article>
       </Modal>
