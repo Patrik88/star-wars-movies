@@ -25,7 +25,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Welcome to My Star Wars App</h1>
+        <figure style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '2.5em' }}>
+          <img src="/star-wars-logo.png" alt="Star Wars Logo" style={{ width: '260px', height: 'auto' }} />
+        </figure>
 
         <div className="grid">
           {/* Skeleton */}
