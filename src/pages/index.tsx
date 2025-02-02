@@ -29,8 +29,8 @@ export default function Home() {
 
         <div className="grid">
           {/* Skeleton */}
-          {/* {!isLoading && Array.from({ length: 6 }).map((_, index) => ( */}
-          {isLoading && !movies && Array.from({ length: 6 }).map((_, index) => (
+          {/* {isLoading && !movies && Array.from({ length: 6 }).map((_, index) => ( */}
+          {!isLoading && Array.from({ length: 6 }).map((_, index) => (
             <MovieCardSkeleton key={index} />
           ))}
 

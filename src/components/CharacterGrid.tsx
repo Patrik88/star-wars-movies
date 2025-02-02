@@ -1,5 +1,6 @@
 import React from 'react';
 import { CharacterCard } from './CharacterCard';
+import { Skeleton } from './Skeleton';
 
 interface CharacterGridProps {
   characterUrls: string[];
@@ -14,12 +15,14 @@ export const CharacterGrid = ({ characterUrls }: CharacterGridProps) => {
           fallback={
             <article
               style={{
-                border: '1px solid #ddd',
+                border: '1px solid hsla(0, 0.00%, 86.70%, 0.20)',
                 margin: '0px',
-                textAlign: 'center'
+                textAlign: 'center',
+                display: 'flex',
+                justifyContent: 'center',
               }}
             >
-              <p style={{ margin: '0px' }}>Loading character...</p>
+              <Skeleton lines={1} heights="1.5em" widths="80%" marginBottom="0" />
             </article>
           }
         >

@@ -22,7 +22,7 @@ export const CharacterCard = ({ characterUrl }: CharacterCardProps) => {
         textAlign: 'center'
       }}
     >
-      <h4 style={{ margin: '0px' }}>{data?.name}</h4>
+      <strong style={{ margin: '0px' }}>{data?.name}</strong>
     </article>
   );
 }; 

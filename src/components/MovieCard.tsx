@@ -19,7 +19,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
 
         <hr />
 
-        <p>{movie.opening_crawl.substring(0, 150)}...</p>
+        <p style={{ marginBottom: '0' }}>{movie.opening_crawl.substring(0, 150)}...</p>
       </div>
 
       <footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
