@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Modal } from './Modal';
 import { Movie } from '../types';
+import { CharacterGrid } from '@/components/CharacterGrid';
 
 interface MovieModalProps {
   movie: Movie;
@@ -59,20 +60,26 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          aria-label="Close modal"
-          style={{ float: 'right', fontSize: '1.5rem' }}
-        >
-          &times;
-        </button>
+        {/* Header */}
+        <header>
+          <button aria-label="Close" rel="prev" onClick={onClose}></button>
+          <hgroup>
+            <h2>{currentMovie.title}</h2>
+            <p>Episode: {currentMovie.episode_id}</p>
+          </hgroup>
+        </header>
 
         {/* Movie Details */}
-        <h2>{currentMovie.title}</h2>
-        <p>Episode: {currentMovie.episode_id}</p>
         <p>{currentMovie.opening_crawl}</p>
         <p>Released: {currentMovie.release_date}</p>
+
+        {/* Characters Section */}
+        <section style={{ marginTop: '20px' }}>
+          <h3>Characters</h3>
+          <React.Suspense fallback={<div>Loading characters...</div>}>
+            <CharacterGrid characterUrls={currentMovie.characters} />
+          </React.Suspense>
+        </section>
 
         {/* Next/Previous Navigation */}
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
