@@ -11,12 +11,18 @@ export const useMovieNavigation = (initialMovie: Movie, movies: Movie[]) => {
   const handlePrev = () => {
     if (prevMovie) {
       setCurrentMovie(prevMovie);
+      const params = new URLSearchParams(window.location.search);
+      params.set('movie', prevMovie.id);
+      window.history.replaceState({}, '', `?${params.toString()}`);
     }
   };
 
   const handleNext = () => {
     if (nextMovie) {
       setCurrentMovie(nextMovie);
+      const params = new URLSearchParams(window.location.search);
+      params.set('movie', nextMovie.id);
+      window.history.replaceState({}, '', `?${params.toString()}`);
     }
   };
 
