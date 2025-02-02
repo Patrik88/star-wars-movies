@@ -5,7 +5,6 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
   const router = useRouter();
 
   const handleViewDetails = () => {
-    // Use the movie.id in the query parameter so that the modal opens
     router.push(`/?movie=${movie.id}`, undefined, { shallow: true });
   };
 

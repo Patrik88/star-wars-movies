@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { useModal } from '../hooks/useModal';
 
 interface ModalProps {
   isOpen: boolean;
@@ -7,56 +8,12 @@ interface ModalProps {
 }
 
 export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  // Prevent background scrolling when the modal is active
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen && dialogRef.current) {
-      // Show the modal and set focus for accessibility
-      dialogRef.current.showModal();
-    }
-  }, [isOpen]);
-
-  const handleClose = () => {
-    if (dialogRef.current) {
-      dialogRef.current.close();
-    }
-    onClose();
-  };
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleClose();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const handleClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    // Close the modal if the backdrop is clicked (outside the content)
-    if (e.target === dialogRef.current) {
-      handleClose();
-    }
-  };
+  const { dialogRef, handleBackdropClick } = useModal(isOpen, onClose);
 
   return (
     <dialog
       ref={dialogRef}
-      onClick={handleClick}
+      onClick={handleBackdropClick}
       aria-modal="true"
       role="dialog"
     >
