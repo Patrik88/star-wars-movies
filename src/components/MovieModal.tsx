@@ -55,40 +55,61 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
   }, []);
 
   return (
-    <Modal isOpen={true} onClose={onClose}>
-      <article
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-      >
-        {/* Header */}
-        <header>
-          <button aria-label="Close" rel="prev" onClick={onClose}></button>
-          <hgroup>
-            <h2>{currentMovie.title}</h2>
-            <p>Episode: {currentMovie.episode_id}</p>
-          </hgroup>
-        </header>
+    <>
+      <Modal isOpen={true} onClose={onClose}>
+        <article
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          style={{ maxHeight: '95vh', display: 'flex', flexDirection: 'column', padding: '0' }}
+        >
+          {/* Header */}
+          <header className="modal-container">
+            <button aria-label="Close" rel="prev" onClick={onClose}></button>
+            <hgroup>
+              <h2>{currentMovie.title}</h2>
+              <p>Episode: {currentMovie.episode_id}</p>
+            </hgroup>
+          </header>
 
-        {/* Movie Details */}
-        <p>{currentMovie.opening_crawl}</p>
-        <p>Released: {currentMovie.release_date}</p>
+          {/* Wrap movie details and character section in a scrollable container */}
+          <div
+            className="modal-container"
+            style={{ overflowY: 'auto', flexGrow: 1, paddingBlock: 'var(--pico-block-spacing-vertical)' }}>
+            {/* Movie Details */}
+            <p>{currentMovie.opening_crawl}</p>
+            <p>Released: {currentMovie.release_date}</p>
 
-        {/* Characters Section */}
-        <section style={{ marginTop: '20px' }}>
-          <h3>Characters</h3>
-          <CharacterGrid characterUrls={currentMovie.characters} />
-        </section>
+            {/* Characters Section */}
+            <section style={{ marginTop: '20px' }}>
+              <h3>Characters</h3>
+              <CharacterGrid characterUrls={currentMovie.characters} />
+            </section>
+          </div>
 
-        {/* Next/Previous Navigation */}
-        <footer style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-          <button onClick={handlePrev} disabled={!prevMovie}>
-            {prevMovie ? `← ${prevMovie.title}` : 'No Previous'}
-          </button>
-          <button onClick={handleNext} disabled={!nextMovie}>
-            {nextMovie ? `${nextMovie.title} →` : 'No Next'}
-          </button>
-        </footer>
-      </article>
-    </Modal>
+          {/* Next/Previous Navigation */}
+          <footer
+            className="modal-container"
+            style={{
+              flexShrink: 0, display: 'flex', justifyContent: 'space-between',
+
+            }}>
+            <button onClick={handlePrev} disabled={!prevMovie}>
+              {prevMovie ? `← ${prevMovie.title}` : 'No Previous'}
+            </button>
+            <button onClick={handleNext} disabled={!nextMovie}>
+              {nextMovie ? `${nextMovie.title} →` : 'No Next'}
+            </button>
+          </footer>
+        </article>
+      </Modal>
+
+      <style jsx>{`
+      .modal-container {
+        padding-inline: var(--pico-block-spacing-horizontal);
+        padding-block: var(--pico-block-spacing-vertical);
+        margin: 0;
+      }
+    `}</style>
+    </>
   );
 }; 
