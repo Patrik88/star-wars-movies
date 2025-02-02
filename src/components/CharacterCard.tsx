@@ -13,7 +13,8 @@ export const CharacterCard = ({ characterUrl }: CharacterCardProps) => {
       style={{
         border: '1px solid #ddd',
         margin: '0px',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: '1rem',
       }}
     >
       <strong style={{ margin: '0px' }}>{character?.name}</strong>
