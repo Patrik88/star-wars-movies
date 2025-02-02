@@ -29,18 +29,21 @@ export default function Home() {
 
         <div className="grid">
           {/* Skeleton */}
-          {/* {isLoading && !movies && Array.from({ length: 6 }).map((_, index) => ( */}
-          {!isLoading && Array.from({ length: 6 }).map((_, index) => (
-            <MovieCardSkeleton key={index} />
-          ))}
+          {isLoading && !movies &&
+            Array.from({ length: 6 }).map((_, index) => (
+              <MovieCardSkeleton key={index} />
+            ))
+          }
 
           {/* Error */}
           {isError && <div>Error loading movies. Please try again later.</div>}
 
           {/* Movies */}
-          {!isLoading && !isError && movies && movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {!isLoading && !isError && movies &&
+            movies.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))
+          }
         </div>
 
         {/* Conditional Modal Rendering based on query parameter */}
