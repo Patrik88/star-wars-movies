@@ -11,7 +11,9 @@ export const useCharacter = (url: string) => {
     revalidateOnFocus: false,
     revalidateIfStale: false
   };
+
   const { data, error } = useSWR<Character>(url, fetcher, swrOptions);
+  
   return {
     character: data,
     isLoading: !data && !error,

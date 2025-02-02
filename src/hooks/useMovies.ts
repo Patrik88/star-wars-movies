@@ -5,9 +5,16 @@ const fetcher = (url: string): Promise<MoviesResponse> =>
   fetch(url).then((res) => res.json());
 
 export const useMovies = () => {
+  const swrOptions = {
+    dedupingInterval: 60000,
+    revalidateOnFocus: false,
+    revalidateIfStale: false
+  };
+
   const { data, error } = useSWR<MoviesResponse>(
     'https://swapi.dev/api/films/',
-    fetcher
+    fetcher,
+    swrOptions
   );
 
   // Transform movies to include an id field (extracted from the URL)
