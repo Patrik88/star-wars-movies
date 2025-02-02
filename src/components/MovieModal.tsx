@@ -60,7 +60,7 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
         <article
           tabIndex={0}
           onKeyDown={handleKeyDown}
-          style={{ maxHeight: 'min(95vh, 1113px)', display: 'flex', flexDirection: 'column', padding: '0' }}
+          style={{ maxHeight: 'min(95vh, 1061.5px)', display: 'flex', flexDirection: 'column', padding: '0' }}
         >
           {/* Header */}
           <header className="modal-container">
@@ -71,10 +71,11 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
             </hgroup>
           </header>
 
-          {/* Wrap movie details and character section in a scrollable container */}
+          {/* Scrollable container */}
           <div
             className="modal-container"
-            style={{ overflowY: 'auto', flexGrow: 1, paddingBlock: 'var(--pico-block-spacing-vertical)' }}>
+            style={{ overflowY: 'auto', flexGrow: 1, paddingBlock: 'var(--pico-block-spacing-vertical)' }}
+          >
             {/* Movie Details */}
             <p>{currentMovie.opening_crawl}</p>
             <p>Released: {currentMovie.release_date}</p>
@@ -89,20 +90,17 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
           {/* Next/Previous Navigation */}
           <footer
             className="modal-container"
-            style={{
-              flexShrink: 0, display: 'flex', justifyContent: 'space-between',
-            }}>
-            {prevMovie && (
-              <button onClick={handlePrev} disabled={!prevMovie} style={{ minWidth: 'calc(33.4% - var(--pico-grid-column-gap))' }}>
-                ← {prevMovie.title}
-              </button>
-            )}
+            style={{ flexShrink: 0, display: 'flex', justifyContent: 'space-between', gap: 'var(--pico-grid-column-gap)' }}
+          >
+            <button onClick={handlePrev} disabled={!prevMovie} style={{ flex: 1, paddingInline: 0, margin: 0 }}>
+              ← {prevMovie?.title}
+            </button>
+
             <div style={{ flex: 1 }}></div>
-            {nextMovie && (
-              <button onClick={handleNext} disabled={!nextMovie} style={{ minWidth: 'calc(33.4% - var(--pico-grid-column-gap))' }}>
-                {nextMovie.title} →
-              </button>
-            )}
+
+            <button onClick={handleNext} disabled={!nextMovie} style={{ flex: 1, paddingInline: 0, margin: 0 }}>
+              {nextMovie?.title} →
+            </button>
           </footer>
         </article>
       </Modal>
