@@ -13,20 +13,20 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
     <article key={movie.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ flex: 1 }}>
         <hgroup>
-          <h2>{movie.title}</h2>
+          <h2 style={{ fontSize: '1.4rem' }}>{movie.title}</h2>
           <p>Episode {movie.episode_id}</p>
         </hgroup>
 
         <hr />
 
-        <p style={{ marginBottom: '0' }}>{movie.opening_crawl.substring(0, 150)}...</p>
+        <p style={{ marginBottom: '0' }}>{movie.opening_crawl.substring(0, 135)}...</p>
       </div>
 
       <footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button className="outline" onClick={handleViewDetails}>View Details</button>
 
-        <small style={{ flex: 1, textAlign: 'center', color: 'var(--pico-muted-color)' }}>
-          <span>Released: </span>
+        <small style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', color: 'var(--pico-muted-color)' }}>
+          <span>Released</span>
           <time dateTime={movie.release_date}>{movie.release_date}</time>
         </small>
       </footer>
