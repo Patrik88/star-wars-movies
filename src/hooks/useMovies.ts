@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { MoviesResponse } from '../types';
+import { MoviesResponse, Movie } from '../types';
 
 const fetcher = (url: string): Promise<MoviesResponse> =>
   fetch(url).then((res) => res.json());
@@ -10,9 +10,15 @@ export const useMovies = () => {
     fetcher
   );
 
-  // Safely copy and sort the movies without mutating the original data
-  const sortedMovies = data?.results
-    ? [...data.results].sort((a, b) => a.episode_id - b.episode_id)
+  // Transform movies to include an id field (extracted from the URL)
+  const sortedMovies: Movie[] | undefined = data?.results
+    ? [...data.results]
+        .map(movie => ({
+          ...movie,
+          // Extract the last non-empty segment (if url exists) or fall back to episode_id
+          id: movie.url ? movie.url.split('/').filter(Boolean).pop()! : movie.episode_id.toString(),
+        }))
+        .sort((a, b) => a.episode_id - b.episode_id)
     : undefined;
 
   return {

@@ -4,6 +4,7 @@ export interface Movie {
   episode_id: number;
   opening_crawl: string;
   release_date: string;
+  url: string;
 }
 
 export interface MoviesResponse {

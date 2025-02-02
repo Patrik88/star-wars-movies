@@ -1,6 +1,14 @@
 import { Movie } from "../types";
+import { useRouter } from 'next/router';
 
 export const MovieCard = ({ movie }: { movie: Movie }) => {
+  const router = useRouter();
+
+  const handleViewDetails = () => {
+    // Use the movie.id in the query parameter so that the modal opens
+    router.push(`/?movie=${movie.id}`, undefined, { shallow: true });
+  };
+
   return (
     <article key={movie.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ flex: 1 }}>
@@ -15,7 +23,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
       </div>
 
       <footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <button className="outline">View Details</button>
+        <button className="outline" onClick={handleViewDetails}>View Details</button>
 
         <small style={{ flex: 1, textAlign: 'center', color: 'var(--pico-muted-color)' }}>
           <span>Released: </span>
