@@ -37,5 +37,14 @@ body {
 }
 
 // Responsive design
-// @media (max-width: 1140px) {
-// }
+@media (min-width: 1140px) {
+  #__next .grid {
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  }
+}
+
+@media (min-width: 1840px) {
+  #__next .grid {
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  }
+}
