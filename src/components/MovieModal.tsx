@@ -76,20 +76,18 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
         {/* Characters Section */}
         <section style={{ marginTop: '20px' }}>
           <h3>Characters</h3>
-          <React.Suspense fallback={<div>Loading characters...</div>}>
-            <CharacterGrid characterUrls={currentMovie.characters} />
-          </React.Suspense>
+          <CharacterGrid characterUrls={currentMovie.characters} />
         </section>
 
         {/* Next/Previous Navigation */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+        <footer style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
           <button onClick={handlePrev} disabled={!prevMovie}>
             {prevMovie ? `← ${prevMovie.title}` : 'No Previous'}
           </button>
           <button onClick={handleNext} disabled={!nextMovie}>
             {nextMovie ? `${nextMovie.title} →` : 'No Next'}
           </button>
-        </div>
+        </footer>
       </article>
     </Modal>
   );

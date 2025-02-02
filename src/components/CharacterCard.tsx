@@ -1,17 +1,28 @@
-import React from 'react';
-import { useCharacter } from '../hooks/useCharacter';
+import useSWR from 'swr';
+import { Character } from '../types';
+
+const fetcher = (url: string): Promise<Character> =>
+  fetch(url).then((res) => res.json());
 
 interface CharacterCardProps {
-  url: string;
+  characterUrl: string;
 }
 
-export const CharacterCard = ({ url }: CharacterCardProps) => {
-  const { character } = useCharacter(url);
+export const CharacterCard = ({ characterUrl }: CharacterCardProps) => {
+  // Using SWR with suspense to fetch the character data.
+  // Note: SWR caches data globally by default.
+  const { data } = useSWR<Character>(characterUrl, fetcher, { suspense: true });
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '8px', borderRadius: '4px', marginBottom: '8px' }}>
-      <strong>{character?.name}</strong>
-      <p>Gender: {character?.gender}</p>
-    </div>
+    <article
+      className="character-card"
+      style={{
+        border: '1px solid #ddd',
+        margin: '0px',
+        textAlign: 'center'
+      }}
+    >
+      <h4 style={{ margin: '0px' }}>{data?.name}</h4>
+    </article>
   );
 }; 
