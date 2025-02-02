@@ -58,13 +58,11 @@ export const MovieModal = ({ movie, movies, onClose }: MovieModalProps) => {
             className="modal-container"
             style={{ flexShrink: 0, display: 'flex', justifyContent: 'space-between', gap: 'var(--pico-grid-column-gap)' }}
           >
-            <button onClick={handlePrev} disabled={!prevMovie} style={{ flex: 1, paddingInline: 0, margin: 0 }}>
+            <button onClick={handlePrev} disabled={!prevMovie} style={{ flex: 1, maxWidth: '331px', paddingInline: 0, margin: 0 }}>
               ← {prevMovie?.title}
             </button>
 
-            <div style={{ flex: 1 }}></div>
-
-            <button onClick={handleNext} disabled={!nextMovie} style={{ flex: 1, paddingInline: 0, margin: 0 }}>
+            <button onClick={handleNext} disabled={!nextMovie} style={{ flex: 1, maxWidth: '331px', paddingInline: 0, margin: 0 }}>
               {nextMovie?.title} →
             </button>
           </footer>
