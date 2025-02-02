@@ -25,7 +25,6 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     if (isOpen && dialogRef.current) {
       // Show the modal and set focus for accessibility
       dialogRef.current.showModal();
-      dialogRef.current.focus();
     }
   }, [isOpen]);
 
@@ -58,17 +57,6 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     <dialog
       ref={dialogRef}
       onClick={handleClick}
-      // style={{
-      //   padding: 0,
-      //   border: 'none',
-      //   borderRadius: '8px',
-      //   maxWidth: '600px',
-      //   width: '90%',
-      //   position: 'fixed',
-      //   top: '50%',
-      //   left: '50%',
-      //   transform: 'translate(-50%, -50%)'
-      // }}
       aria-modal="true"
       role="dialog"
     >
